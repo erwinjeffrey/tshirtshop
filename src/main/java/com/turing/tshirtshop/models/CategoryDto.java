@@ -1,4 +1,4 @@
-package com.turing.tshirtshop.entities.models;
+package com.turing.tshirtshop.models;
 
 public class CategoryDto {
     private int category_id;

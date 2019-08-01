@@ -1,15 +1,15 @@
 package com.turing.tshirtshop.controller;
 
 import com.turing.tshirtshop.custom.ProductInfoCustom;
-import com.turing.tshirtshop.entities.Product;
-import com.turing.tshirtshop.entities.models.ProductDto;
-import com.turing.tshirtshop.entities.models.SearchProductDto;
+import com.turing.tshirtshop.entities.Review;
+import com.turing.tshirtshop.models.ProductDto;
+import com.turing.tshirtshop.models.ProductReviewDto;
+import com.turing.tshirtshop.models.SearchProductDto;
 import com.turing.tshirtshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -34,6 +34,7 @@ public class ProductController {
         int page = parameters.get("page") != null ? Integer.parseInt(parameters.get("page")) : 1;
         int limit = parameters.get("limit") != null ? Integer.parseInt(parameters.get("limit")) : 20;
         int descriptionLenght = parameters.get("description_length")  != null ? Integer.parseInt(parameters.get("description_length")) : 200;
+
         String seachItem = parameters.get("query_string");
         String allWordsStatus = parameters.get("all_words");
 
@@ -46,4 +47,34 @@ public class ProductController {
         return ResponseEntity.ok(productService.searchProduct(productId,descriptionLenght));
     }
 
+    @GetMapping(path = "/inCategory/{category_id}")
+    public ResponseEntity<SearchProductDto> searchProductsByCategory(@PathVariable("category_id") int categoryId,@RequestParam Map<String,String> parameters){
+        int page = parameters.get("page") != null ? Integer.parseInt(parameters.get("page")) : 1;
+        int limit = parameters.get("limit") != null ? Integer.parseInt(parameters.get("limit")) : 20;
+        int descriptionLenght = parameters.get("description_length")  != null ? Integer.parseInt(parameters.get("description_length")) : 200;
+
+        return ResponseEntity.ok(productService.searchProductsByCategory(categoryId,descriptionLenght,limit,page));
+    }
+
+    @GetMapping(path = "/inDepartment/{department_id}")
+    public ResponseEntity<SearchProductDto> searchProductsByDepartment(@PathVariable("department_id") int departmentId,@RequestParam Map<String,String> parameters){
+        int page = parameters.get("page") != null ? Integer.parseInt(parameters.get("page")) : 1;
+        int limit = parameters.get("limit") != null ? Integer.parseInt(parameters.get("limit")) : 20;
+        int descriptionLenght = parameters.get("description_length")  != null ? Integer.parseInt(parameters.get("description_length")) : 200;
+
+        return ResponseEntity.ok(productService.searchProductsByDepartment(departmentId,descriptionLenght,limit,page));
+    }
+
+    /*
+    This endpoint returns a list reviews for a product using the product id in the request params.
+     */
+    @GetMapping(path = "/{product_id}/reviews")
+    public ResponseEntity<ProductReviewDto> searchProductsByDepartment(@PathVariable("product_id") int productId){
+        return ResponseEntity.ok(productService.searchReviewByProduct(productId));
+    }
+
+    @PostMapping(path = "/{product_id}/reviews")
+    public ResponseEntity<Review> saveReview(@PathVariable("product_id") int productId,@RequestBody Review review){
+        return ResponseEntity.ok(productService.save(productId,review));
+    }
 }

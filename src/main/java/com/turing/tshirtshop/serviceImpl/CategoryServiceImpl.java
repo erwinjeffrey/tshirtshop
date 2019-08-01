@@ -2,8 +2,8 @@ package com.turing.tshirtshop.serviceImpl;
 
 import com.turing.tshirtshop.entities.Category;
 import com.turing.tshirtshop.custom.CategoryCustom;
-import com.turing.tshirtshop.entities.models.CategoryDepartmentWrapper;
-import com.turing.tshirtshop.entities.models.CategoryWrapper;
+import com.turing.tshirtshop.models.CategoryDepartmentWrapper;
+import com.turing.tshirtshop.models.CategoryWrapper;
 import com.turing.tshirtshop.repositories.CategoryCustomRepository;
 import com.turing.tshirtshop.repositories.CategoryDepartCusRepository;
 import com.turing.tshirtshop.repositories.CategoryRepository;

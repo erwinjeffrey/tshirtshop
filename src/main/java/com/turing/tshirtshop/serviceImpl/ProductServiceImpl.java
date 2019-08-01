@@ -2,20 +2,21 @@ package com.turing.tshirtshop.serviceImpl;
 
 import com.turing.tshirtshop.custom.ProductInfoCustom;
 import com.turing.tshirtshop.entities.Product;
-import com.turing.tshirtshop.entities.models.PaginationMetaDto;
-import com.turing.tshirtshop.entities.models.ProductDto;
-import com.turing.tshirtshop.entities.models.SearchProductDto;
+import com.turing.tshirtshop.entities.Review;
+import com.turing.tshirtshop.models.PaginationMetaDto;
+import com.turing.tshirtshop.models.ProductDto;
+import com.turing.tshirtshop.models.ProductReviewDto;
+import com.turing.tshirtshop.models.SearchProductDto;
 import com.turing.tshirtshop.repositories.ProductInfoCustomRepository;
 import com.turing.tshirtshop.repositories.ProductRepository;
+import com.turing.tshirtshop.repositories.ReviewRepository;
 import com.turing.tshirtshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -25,6 +26,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     private ProductInfoCustomRepository productInfoCustomRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Override
     public ProductDto findAllProduct(int page, int limit,int descriptionLenght) {
@@ -71,5 +75,31 @@ public class ProductServiceImpl implements ProductService{
             productInfoCustom.setDescription(productInfoCustom.getDescription().substring(0,descriptionLenght+1) + "...");
         }
         return productInfoCustom;
+    }
+
+    @Override
+    public SearchProductDto searchProductsByCategory(int categoryId, int descriptionLength, int limit, int page) {
+        SearchProductDto searchProductDto = new SearchProductDto();
+        searchProductDto.setRows(productRepository.searchProductsByCategory(categoryId,descriptionLength,limit,page));
+        return searchProductDto;
+    }
+
+    @Override
+    public SearchProductDto searchProductsByDepartment(int departementId, int descriptionLength, int limit, int page) {
+        SearchProductDto searchProductDto = new SearchProductDto();
+        searchProductDto.setRows(productRepository.searchProductsByDepartment(departementId,descriptionLength,limit,page));
+        return searchProductDto;
+    }
+
+    @Override
+    public ProductReviewDto searchReviewByProduct(int productId) {
+        ProductReviewDto productReviewDto = new ProductReviewDto();
+        productReviewDto.setReviews(reviewRepository.searchReviewByProduct(productId));
+        return productReviewDto;
+    }
+
+    @Override
+    public Review save(int productId, Review review) {
+        return reviewRepository.saveReview(review.getCustomer_id(),productId,review.getReview(),review.getRating());
     }
 }

@@ -1,4 +1,4 @@
-package com.turing.tshirtshop.entities.models;
+package com.turing.tshirtshop.models;
 
 import com.turing.tshirtshop.entities.Product;
 

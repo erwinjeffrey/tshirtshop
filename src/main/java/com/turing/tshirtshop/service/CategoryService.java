@@ -2,8 +2,8 @@ package com.turing.tshirtshop.service;
 
 import com.turing.tshirtshop.entities.Category;
 import com.turing.tshirtshop.custom.CategoryCustom;
-import com.turing.tshirtshop.entities.models.CategoryDepartmentWrapper;
-import com.turing.tshirtshop.entities.models.CategoryWrapper;
+import com.turing.tshirtshop.models.CategoryDepartmentWrapper;
+import com.turing.tshirtshop.models.CategoryWrapper;
 
 public interface CategoryService {
     CategoryWrapper findAllCategories();

@@ -3,7 +3,6 @@ package com.turing.tshirtshop.controller;
 import com.turing.tshirtshop.custom.AttributeCustom;
 import com.turing.tshirtshop.custom.AttributeValueCustom;
 import com.turing.tshirtshop.entities.Attribute;
-import com.turing.tshirtshop.entities.models.CategoryWrapper;
 import com.turing.tshirtshop.repositories.AttributeRepository;
 import com.turing.tshirtshop.service.AttributeService;
 import org.springframework.beans.factory.annotation.Autowired;

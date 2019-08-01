@@ -24,4 +24,9 @@ public interface ProductRepository extends PagingAndSortingRepository<Product,In
             ":inProductsPerPage, :inStartItem)")
     List<Product> searchProductsByCategory(@Param("inCategoryId") int categoryId, @Param("inShortProductDescriptionLength") int descriptionLength,
                                            @Param("inProductsPerPage") int limit,@Param("inStartItem") int page);
+
+    @Query(nativeQuery = true, value = "call catalog_get_products_on_department(:inDepartmentId,:inShortProductDescriptionLength," +
+            ":inProductsPerPage, :inStartItem)")
+    List<Product> searchProductsByDepartment(@Param("inDepartmentId") int departmentId, @Param("inShortProductDescriptionLength") int descriptionLength,
+                                           @Param("inProductsPerPage") int limit,@Param("inStartItem") int page);
 }
