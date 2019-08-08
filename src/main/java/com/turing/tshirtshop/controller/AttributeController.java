@@ -5,6 +5,7 @@ import com.turing.tshirtshop.custom.AttributeValueCustom;
 import com.turing.tshirtshop.entities.Attribute;
 import com.turing.tshirtshop.repositories.AttributeRepository;
 import com.turing.tshirtshop.service.AttributeService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/attributes")
+@Api(value = "Attributes Ecommerce  System", description = "Attributes of Products")
 public class AttributeController {
 
     @Autowired
