@@ -5,10 +5,11 @@ import com.turing.tshirtshop.models.CustomerDto;
 import com.turing.tshirtshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/")
 public class CustomerController {
 
     @Autowired
@@ -17,14 +18,33 @@ public class CustomerController {
     /*
      This endpoints allow a user to create a new account.
      */
-    @PostMapping(path = "")
+    @PostMapping(path = "/customers")
     public ResponseEntity<CustomerDto> addCustomer(@RequestBody Customer customer){
         return ResponseEntity.ok(customerService.addCustomer(customer));
     }
 
-    @PostMapping(path = "/login")
+    /*@PostMapping(path = "/login")
     public ResponseEntity<CustomerDto> customerLoginInfo(@RequestBody Customer customer){
         return ResponseEntity.ok(customerService.customerLoginInfo(customer));
+    }*/
+
+    @GetMapping(path = "/customers/{customer_id}")
+    public ResponseEntity<Customer> findCustomer(@PathVariable("customer_id") int customerId){
+        return ResponseEntity.ok(customerService.findCustomer(customerId));
     }
 
+    @PutMapping(path = "/customer")
+    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
+        return ResponseEntity.ok(customerService.updateCustomer(customer));
+    }
+
+    @PutMapping(path = "/customer/address")
+    public ResponseEntity<Customer> updateAddress(@RequestBody Customer customer){
+        return ResponseEntity.ok(customerService.updateAddress(customer));
+    }
+
+    @PutMapping(path = "/customer/creditCard")
+    public ResponseEntity<Customer> updateCreditCard(@RequestBody Customer customer){
+        return ResponseEntity.ok(customerService.updateCreditCard(customer));
+    }
 }

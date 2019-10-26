@@ -100,6 +100,10 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Review save(int productId, Review review) {
-        return reviewRepository.saveReview(review.getCustomer_id(),productId,review.getReview(),review.getRating());
+
+        int lastReviewId= reviewRepository.saveReview(review.getCustomer_id(),productId,
+                review.getReview(),review.getRating());
+
+        return reviewRepository.findById(lastReviewId).orElse(null);
     }
 }

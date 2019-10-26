@@ -11,6 +11,8 @@ public class CategoryDepartCustom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer category_id;
 
+    private Integer department_id;
+
     private String name;
 
     private String description;
@@ -39,4 +41,11 @@ public class CategoryDepartCustom {
         this.category_id = category_id;
     }
 
+    public Integer getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(Integer department_id) {
+        this.department_id = department_id;
+    }
 }

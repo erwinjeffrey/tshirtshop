@@ -4,6 +4,42 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "customer")
+
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name="updateAccount",
+                procedureName = "customer_update_account",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCustomerId",type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inName",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inEmail",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inPassword",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inDayPhone",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inEvePhone",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inMobPhone",type = String.class)
+                }),
+        @NamedStoredProcedureQuery(name="updateAddress",
+                procedureName = "customer_update_address",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCustomerId",type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inAddress1",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inAddress2",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCity",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inRegion",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inPostalCode",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCountry",type = String.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inShippingRegionId",type = Integer.class)
+                }),
+        @NamedStoredProcedureQuery(name="updateCreditCard",
+                procedureName = "customer_update_credit_card",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCustomerId",type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCreditCard",type = String.class),
+                })
+
+        }
+
+)
+
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +54,7 @@ public class Customer {
     private String region;
     private String postal_code;
     private String country;
-    private String shipping_region_id;
+    private int shipping_region_id;
     private String day_phone;
     private String eve_phone;
     private String mob_phone;
@@ -111,11 +147,11 @@ public class Customer {
         this.country = country;
     }
 
-    public String getShipping_region_id() {
+    public int getShipping_region_id() {
         return shipping_region_id;
     }
 
-    public void setShipping_region_id(String shipping_region_id) {
+    public void setShipping_region_id(int shipping_region_id) {
         this.shipping_region_id = shipping_region_id;
     }
 

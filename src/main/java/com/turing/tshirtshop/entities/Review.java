@@ -4,6 +4,17 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "review")
+
+@NamedStoredProcedureQuery(name="out_review_id",
+                           procedureName = "catalog_create_product_review",
+                           parameters = {
+                              @StoredProcedureParameter(mode = ParameterMode.IN, name = "inCustomerId",type = Integer.class),
+                                   @StoredProcedureParameter(mode = ParameterMode.IN, name = "inProductId",type = Integer.class),
+                                   @StoredProcedureParameter(mode = ParameterMode.IN, name = "inReview",type = String.class),
+                                   @StoredProcedureParameter(mode = ParameterMode.IN, name = "inRating",type = Integer.class),
+                                   @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_reviewId",type = Integer.class)
+
+                           })
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +23,7 @@ public class Review {
     private int rating;
     private String created_on;
     private int customer_id;
+    private int product_id;
 
     public String getReview() {
         return review;
@@ -52,5 +64,13 @@ public class Review {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
     }
 }

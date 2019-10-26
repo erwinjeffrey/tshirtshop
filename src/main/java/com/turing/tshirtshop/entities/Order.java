@@ -4,6 +4,15 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "order")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name="orderDetails",
+                procedureName = "orders_get_order_details",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "inOrderId",type = Integer.class),
+                 })
+}
+
+)
 public class Order {
 
     @Id

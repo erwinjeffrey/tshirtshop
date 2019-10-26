@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "shopping_cart")
 public class ShoppingCart {
-    private char cart_id;
+    private String cart_id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int item_id;
@@ -21,11 +21,11 @@ public class ShoppingCart {
         this.item_id = item_id;
     }
 
-    public char getCart_id() {
+    public String getCart_id() {
         return cart_id;
     }
 
-    public void setCart_id(char cart_id) {
+    public void setCart_id(String cart_id) {
         this.cart_id = cart_id;
     }
 
