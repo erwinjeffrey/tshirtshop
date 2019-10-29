@@ -1,12 +1,21 @@
 package com.turing.tshirtshop.service;
 
+import com.turing.tshirtshop.custom.ShoppingCartProduct;
 import com.turing.tshirtshop.entities.ShoppingCart;
+import com.turing.tshirtshop.models.ShoppingMessage;
 import com.turing.tshirtshop.models.UniqueId;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Map;
+import java.util.List;
 
 public interface ShoppingCartService{
-    ShoppingCart addProductToShoppingCart(Map<String, String> headers, ShoppingCart shoppingCart);
+    List<ShoppingCart> addProductToShoppingCart(ShoppingCart shoppingCart);
     UniqueId generateUniqueId();
+
+    List<ShoppingCartProduct>findShoppingCartProduct(String cartId);
+
+    ShoppingCart updateShoppingCart(String itemId,int quantity);
+
+    List<ShoppingCart> emptyShoppingCart(String cartId);
+
+    ShoppingMessage removeShoppingCartProd(String itemId);
 }
