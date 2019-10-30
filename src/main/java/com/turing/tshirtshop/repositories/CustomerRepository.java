@@ -12,9 +12,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     @Query(nativeQuery = true, value = "call customer_add(:inName,:inEmail,:inPassword)")
     int addCustomer(@Param("inName") String name, @Param("inEmail") String email,@Param("inPassword") String password);
 
-    /*@Query(nativeQuery = true, value = "call customer_get_login_info(:inEmail)")
-    CustomerLoginInfo customerLoginInfo(@Param("inEmail") String email);*/
-
     Customer findByEmail(String email);
 
     @Query(nativeQuery = true, value = "call customer_get_customer(:inCustomerId)")

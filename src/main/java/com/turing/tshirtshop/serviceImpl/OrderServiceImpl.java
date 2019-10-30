@@ -27,8 +27,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderIdDto createOrder(OrderDto orderDto) {
         OrderIdDto orderIdDto = new OrderIdDto();
 
-        orderIdDto.setOrder_id(orderRepository.createOrder(orderDto.getCart_id(),orderDto.getCustomer_id(),
-                orderDto.getShipping_id(),orderDto.getTax_id()));
+        orderIdDto.setOrderId(orderRepository.createOrder(orderDto.getCartId(),orderDto.getCustomerId(),
+                orderDto.getShippingId(),orderDto.getTaxId()));
         return orderIdDto;
     }
 
@@ -36,8 +36,8 @@ public class OrderServiceImpl implements OrderService {
     public OrderDetailsCustom findOrderDetails(int orderId) {
         List<Order> orders = orderRepository.findOrderDetails(orderId);
         OrderDetailsCustom orderDetailsCustom = new OrderDetailsCustom();
-        orderDetailsCustom.setOrder_id(orderId);
-        orderDetailsCustom.setOrder_items(orders);
+        orderDetailsCustom.setOrderId(orderId);
+        orderDetailsCustom.setOrderItems(orders);
         return orderDetailsCustom;
     }
 

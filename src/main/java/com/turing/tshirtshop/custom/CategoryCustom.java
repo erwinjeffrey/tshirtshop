@@ -1,23 +1,34 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "category")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class CategoryCustom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int category_id;
-    private String name;
-    private int department_id;
+    @Column(name = "category_id")
+    private int categoryId;
 
-    public int getCategory_id() {
-        return category_id;
+    private String name;
+
+    @Column(name = "department_id")
+    private int departmentId;
+
+    @JsonSerialize
+    @JsonProperty("category_id")
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -28,11 +39,13 @@ public class CategoryCustom {
         this.name = name;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    @JsonSerialize
+    @JsonProperty("department_id")
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 }

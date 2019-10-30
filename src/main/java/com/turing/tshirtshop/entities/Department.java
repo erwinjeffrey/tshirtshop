@@ -1,15 +1,21 @@
 package com.turing.tshirtshop.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "department")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer department_id;
+    @Column(name = "department_id")
+    private int departmentId;
 
     private String name;
 
@@ -31,11 +37,13 @@ public class Department {
         this.description = description;
     }
 
-    public Integer getDepartment_id() {
-        return department_id;
+    @JsonSerialize
+    @JsonProperty("department_id")
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(Integer department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 }

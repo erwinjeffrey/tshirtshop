@@ -1,5 +1,9 @@
 package com.turing.tshirtshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,15 +19,20 @@ import javax.persistence.*;
                                    @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_reviewId",type = Integer.class)
 
                            })
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int review_id;
+    @Column(name = "review_id")
+    private int reviewId;
     private String review;
     private int rating;
-    private String created_on;
-    private int customer_id;
-    private int product_id;
+    @Column(name = "created_on")
+    private String createdOn;
+    @Column(name = "customer_id")
+    private int customerId;
+    @Column(name = "product_id")
+    private int productId;
 
     public String getReview() {
         return review;
@@ -33,29 +42,14 @@ public class Review {
         this.review = review;
     }
 
-
-    public String getCreated_on() {
-        return created_on;
+    @JsonSerialize
+    @JsonProperty("review_id")
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public void setCreated_on(String created_on) {
-        this.created_on = created_on;
-    }
-
-    public int getReview_id() {
-        return review_id;
-    }
-
-    public void setReview_id(int review_id) {
-        this.review_id = review_id;
-    }
-
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
     public int getRating() {
@@ -66,11 +60,33 @@ public class Review {
         this.rating = rating;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    @JsonSerialize
+    @JsonProperty("created_on")
+    public String getCreatedOn() {
+        return createdOn;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setCreatedOn(String createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    @JsonSerialize
+    @JsonProperty("customer_id")
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    @JsonSerialize
+    @JsonProperty("product_id")
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

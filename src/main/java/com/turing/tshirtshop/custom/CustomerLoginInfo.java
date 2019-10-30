@@ -1,21 +1,29 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "customer")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class CustomerLoginInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customer_id;
+    @Column(name = "customer_id")
+    private int customerId;
     private String password;
 
-    public int getCustomer_id() {
-        return customer_id;
+    @JsonSerialize
+    @JsonProperty("customer_id")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getPassword() {

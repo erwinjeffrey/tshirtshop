@@ -1,21 +1,29 @@
 package com.turing.tshirtshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "attribute")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Attribute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int attribute_id;
+    @Column(name = "attribute_id")
+    private int attributeId;
     private String name;
 
-    public int getAttribute_id() {
-        return attribute_id;
+    @JsonSerialize
+    @JsonProperty("attribute_id")
+    public int getAttributeId() {
+        return attributeId;
     }
 
-    public void setAttribute_id(int attribute_id) {
-        this.attribute_id = attribute_id;
+    public void setAttributeId(int attributeId) {
+        this.attributeId = attributeId;
     }
 
     public String getName() {

@@ -1,16 +1,23 @@
 package com.turing.tshirtshop.models;
 
-public class CategoryDto {
-    private int category_id;
-    private String name;
-    private int department_id;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-    public int getCategory_id() {
-        return category_id;
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+public class CategoryDto {
+    private int categoryId;
+    private String name;
+    private int departmentId;
+
+    @JsonSerialize
+    @JsonProperty("category_id")
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getName() {
@@ -21,11 +28,13 @@ public class CategoryDto {
         this.name = name;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    @JsonSerialize
+    @JsonProperty("departmentId_id")
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 }

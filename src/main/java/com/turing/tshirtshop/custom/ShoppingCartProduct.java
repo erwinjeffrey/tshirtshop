@@ -1,31 +1,44 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "shopping_cart")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ShoppingCartProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String item_id;
+    @Column(name = "item_id")
+    private String itemId;
+    @Column(name = "cart_id")
     private String cart_id;
     private String name;
     private String attributes;
-    private int product_id;
+    @Column(name = "productId")
+    private int productId;
     private String image;
     private double price;
-    private double discounted_price;
+    @Column(name = "discounted_price")
+    private double discountedPrice;
     private int quantity;
     private double subtotal;
 
-    public String getItem_id() {
-        return item_id;
+    @JsonSerialize
+    @JsonProperty("item_id")
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
+    @JsonSerialize
+    @JsonProperty("cart_id")
     public String getCart_id() {
         return cart_id;
     }
@@ -50,12 +63,14 @@ public class ShoppingCartProduct {
         this.attributes = attributes;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    @JsonSerialize
+    @JsonProperty("product_id")
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getImage() {
@@ -74,12 +89,14 @@ public class ShoppingCartProduct {
         this.price = price;
     }
 
-    public double getDiscounted_price() {
-        return discounted_price;
+    @JsonSerialize
+    @JsonProperty("discounted_price")
+    public double getDiscountedPrice() {
+        return discountedPrice;
     }
 
-    public void setDiscounted_price(double discounted_price) {
-        this.discounted_price = discounted_price;
+    public void setDiscountedPrice(double discountedPrice) {
+        this.discountedPrice = discountedPrice;
     }
 
     public int getQuantity() {

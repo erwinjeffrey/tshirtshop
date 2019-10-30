@@ -17,7 +17,7 @@ import java.util.Map;
 public class ProductController {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     @GetMapping(path = "")
     public ResponseEntity<ProductDto> findAllProduct(@RequestParam Map<String,String> parameters){

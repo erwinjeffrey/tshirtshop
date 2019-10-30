@@ -1,42 +1,57 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "order")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class OrderCustom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int order_id;
-    private double  total_amount;
-    private Date created_on;
+    @Column(name = "order_id")
+    private int orderId;
+    @Column(name = "total_amount")
+    private double totalAmount;
+    @Column(name = "created_on")
+    private Date createdOn;
     private int status;
-    private String  name;
-    private Date shipped_on;
+    private String name;
+    @Column(name = "shipped_on")
+    private Date shippedOn;
 
-    public int getOrder_id() {
-        return order_id;
+    @JsonSerialize
+    @JsonProperty("order_id")
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public double getTotal_amount() {
-        return total_amount;
+    @JsonSerialize
+    @JsonProperty("total_amount")
+    public double getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotal_amount(double total_amount) {
-        this.total_amount = total_amount;
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
-    public Date getCreated_on() {
-        return created_on;
+    @JsonSerialize
+    @JsonProperty("created_on")
+    public Date getCreatedOn() {
+        return createdOn;
     }
 
-    public void setCreated_on(Date created_on) {
-        this.created_on = created_on;
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 
     public int getStatus() {
@@ -55,11 +70,13 @@ public class OrderCustom {
         this.name = name;
     }
 
-    public Date getShipped_on() {
-        return shipped_on;
+    @JsonSerialize
+    @JsonProperty("shipped_on")
+    public Date getShippedOn() {
+        return shippedOn;
     }
 
-    public void setShipped_on(Date shipped_on) {
-        this.shipped_on = shipped_on;
+    public void setShippedOn(Date shippedOn) {
+        this.shippedOn = shippedOn;
     }
 }

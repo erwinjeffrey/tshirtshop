@@ -1,40 +1,53 @@
 package com.turing.tshirtshop.models;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class OrderDto {
-    private char cart_id;
-    private int shipping_id;
-    private int tax_id;
-    private int customer_id;
+    private char cartId;
+    private int shippingId;
+    private int taxId;
+    private int customerId;
 
-    public char getCart_id() {
-        return cart_id;
+    @JsonSerialize
+    @JsonProperty("cart_id")
+    public char getCartId() {
+        return cartId;
     }
 
-    public void setCart_id(char cart_id) {
-        this.cart_id = cart_id;
+    public void setCartId(char cartId) {
+        this.cartId = cartId;
     }
 
-    public int getShipping_id() {
-        return shipping_id;
+    @JsonSerialize
+    @JsonProperty("shipping_id")
+    public int getShippingId() {
+        return shippingId;
     }
 
-    public void setShipping_id(int shipping_id) {
-        this.shipping_id = shipping_id;
+    public void setShippingId(int shippingId) {
+        this.shippingId = shippingId;
     }
 
-    public int getTax_id() {
-        return tax_id;
+    @JsonSerialize
+    @JsonProperty("tax_id")
+    public int getTaxId() {
+        return taxId;
     }
 
-    public void setTax_id(int tax_id) {
-        this.tax_id = tax_id;
+    public void setTaxId(int taxId) {
+        this.taxId = taxId;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    @JsonSerialize
+    @JsonProperty("customer_id")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 }

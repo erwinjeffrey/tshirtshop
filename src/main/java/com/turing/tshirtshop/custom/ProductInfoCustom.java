@@ -1,32 +1,32 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "product")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ProductInfoCustom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_id;
+    @Column(name = "product_id")
+    private int productId;
 
     private String name;
     private String description;
     private String price;
-    private String discounted_price;
+    @Column(name = "discounted_price")
+    private String discountedPrice;
     private String thumbnail;
     private String image;
-    private String image_2;
+    @Column(name = "image_2")
+    private String secondImage;
     private int  display;
-
-    public int getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
-    }
 
     public String getName() {
         return name;
@@ -52,14 +52,6 @@ public class ProductInfoCustom {
         this.price = price;
     }
 
-    public String getDiscounted_price() {
-        return discounted_price;
-    }
-
-    public void setDiscounted_price(String discounted_price) {
-        this.discounted_price = discounted_price;
-    }
-
     public String getThumbnail() {
         return thumbnail;
     }
@@ -76,19 +68,41 @@ public class ProductInfoCustom {
         this.image = image;
     }
 
-    public String getImage_2() {
-        return image_2;
-    }
-
-    public void setImage_2(String image_2) {
-        this.image_2 = image_2;
-    }
-
     public int getDisplay() {
         return display;
     }
 
     public void setDisplay(int display) {
         this.display = display;
+    }
+
+    @JsonSerialize
+    @JsonProperty("discounted_price")
+    public String getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public void setDiscountedPrice(String discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
+
+    @JsonSerialize
+    @JsonProperty("image_2")
+    public String getSecondImage() {
+        return secondImage;
+    }
+
+    public void setSecondImage(String secondImage) {
+        this.secondImage = secondImage;
+    }
+
+    @JsonSerialize
+    @JsonProperty("product_id")
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

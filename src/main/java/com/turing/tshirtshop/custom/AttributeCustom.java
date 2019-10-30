@@ -1,5 +1,9 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,33 +11,43 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "attribute")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class AttributeCustom {
     @Id
-    private int attribute_value_id;
-    private String attribute_name;
-    private String attribute_value;
+    @Column(name = "attribute_value_id")
+    private int attributeValueId;
+    @Column(name = "attribute_name")
+    private String attributeName;
+    @Column(name = "attribute_value")
+    private String attributeValue;
 
-    public int getAttribute_value_id() {
-        return attribute_value_id;
+    @JsonSerialize
+    @JsonProperty("attribute_value_id")
+    public int getAttributeValueId() {
+        return attributeValueId;
     }
 
-    public void setAttribute_value_id(int attribute_value_id) {
-        this.attribute_value_id = attribute_value_id;
+    public void setAttributeValueId(int attributeValueId) {
+        this.attributeValueId = attributeValueId;
     }
 
-    public String getAttribute_name() {
-        return attribute_name;
+    @JsonSerialize
+    @JsonProperty("attribute_name")
+    public String getAttributeName() {
+        return attributeName;
     }
 
-    public void setAttribute_name(String attribute_name) {
-        this.attribute_name = attribute_name;
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
     }
 
-    public String getAttribute_value() {
-        return attribute_value;
+    @JsonSerialize
+    @JsonProperty("attribute_value")
+    public String getAttributeValue() {
+        return attributeValue;
     }
 
-    public void setAttribute_value(String attribute_value) {
-        this.attribute_value = attribute_value;
+    public void setAttributeValue(String attributeValue) {
+        this.attributeValue = attributeValue;
     }
 }

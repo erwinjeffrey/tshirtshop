@@ -1,29 +1,40 @@
 package com.turing.tshirtshop.custom;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.turing.tshirtshop.entities.Order;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.util.List;
 
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
+@Entity
 public class OrderDetailsCustom {
 
-    //@SerializedName("order_items")
-    private int order_id;
+    @Column(name = "order_id")
+    private int orderId;
 
-   // @SerializedName("order_items")
-    private List<Order> order_items;
+    @Column(name = "order_items")
+    private List<Order> orderItems;
 
-    public int getOrder_id() {
-        return order_id;
+    @JsonSerialize
+    @JsonProperty("order_id")
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public List<Order> getOrder_items() {
-        return order_items;
+    @JsonSerialize
+    @JsonProperty("order_items")
+    public List<Order> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrder_items(List<Order> order_items) {
-        this.order_items = order_items;
+    public void setOrderItems(List<Order> orderItems) {
+        this.orderItems = orderItems;
     }
 }

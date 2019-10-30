@@ -1,13 +1,19 @@
 package com.turing.tshirtshop.custom;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "attribute")
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class AttributeValueCustom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int attribute_value_id;
+    @Column(name = "attribute_value_id")
+    private int attributeValueId;
     private String value;
 
     public String getValue() {
@@ -18,11 +24,13 @@ public class AttributeValueCustom {
         this.value = value;
     }
 
-    public int getAttribute_value_id() {
-        return attribute_value_id;
+    @JsonSerialize
+    @JsonProperty("attribute_value_id")
+    public int getAttributeValueId() {
+        return attributeValueId;
     }
 
-    public void setAttribute_value_id(int attribute_value_id) {
-        this.attribute_value_id = attribute_value_id;
+    public void setAttributeValueId(int attributeValueId) {
+        this.attributeValueId = attributeValueId;
     }
 }

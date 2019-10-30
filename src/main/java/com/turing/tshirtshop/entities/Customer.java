@@ -1,5 +1,9 @@
 package com.turing.tshirtshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -39,32 +43,43 @@ import javax.persistence.*;
         }
 
 )
-
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customer_id;
+    @Column(name = "customer_id")
+    private int customerId;
     private String name;
     private String email;
     private String password;
-    private String credit_card;
-    private String address_1;
-    private String address_2;
+    @Column(name = "credit_card")
+    private String creditCard;
+    @Column(name = "address_1")
+    private String firstAddress;
+    @Column(name = "address_2")
+    private String secondAddress;
     private String city;
     private String region;
-    private String postal_code;
+    @Column(name = "postal_code")
+    private String postalCode;
     private String country;
-    private int shipping_region_id;
-    private String day_phone;
-    private String eve_phone;
-    private String mob_phone;
+    @Column(name = "shipping_region_id")
+    private int shippingRegionId;
+    @Column(name = "day_phone")
+    private String dayPhone;
+    @Column(name = "eve_phone")
+    private String evePhone;
+    @Column(name = "mob_phone")
+    private String mobPhone;
 
-    public int getCustomer_id() {
-        return customer_id;
+    @JsonSerialize
+    @JsonProperty("customer_id")
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -91,28 +106,34 @@ public class Customer {
         this.password = password;
     }
 
-    public String getCredit_card() {
-        return credit_card;
+    @JsonSerialize
+    @JsonProperty("credit_card")
+    public String getCreditCard() {
+        return creditCard;
     }
 
-    public void setCredit_card(String credit_card) {
-        this.credit_card = credit_card;
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
     }
 
-    public String getAddress_1() {
-        return address_1;
+    @JsonSerialize
+    @JsonProperty("address_1")
+    public String getFirstAddress() {
+        return firstAddress;
     }
 
-    public void setAddress_1(String address_1) {
-        this.address_1 = address_1;
+    public void setFirstAddress(String firstAddress) {
+        this.firstAddress = firstAddress;
     }
 
-    public String getAddress_2() {
-        return address_2;
+    @JsonSerialize
+    @JsonProperty("address_2")
+    public String getSecondAddress() {
+        return secondAddress;
     }
 
-    public void setAddress_2(String address_2) {
-        this.address_2 = address_2;
+    public void setSecondAddress(String secondAddress) {
+        this.secondAddress = secondAddress;
     }
 
     public String getCity() {
@@ -131,12 +152,14 @@ public class Customer {
         this.region = region;
     }
 
-    public String getPostal_code() {
-        return postal_code;
+    @JsonSerialize
+    @JsonProperty("postal_code")
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public String getCountry() {
@@ -147,35 +170,43 @@ public class Customer {
         this.country = country;
     }
 
-    public int getShipping_region_id() {
-        return shipping_region_id;
+    @JsonSerialize
+    @JsonProperty("shipping_region_id")
+    public int getShippingRegionId() {
+        return shippingRegionId;
     }
 
-    public void setShipping_region_id(int shipping_region_id) {
-        this.shipping_region_id = shipping_region_id;
+    public void setShippingRegionId(int shippingRegionId) {
+        this.shippingRegionId = shippingRegionId;
     }
 
-    public String getDay_phone() {
-        return day_phone;
+    @JsonSerialize
+    @JsonProperty("day_phone")
+    public String getDayPhone() {
+        return dayPhone;
     }
 
-    public void setDay_phone(String day_phone) {
-        this.day_phone = day_phone;
+    public void setDayPhone(String dayPhone) {
+        this.dayPhone = dayPhone;
     }
 
-    public String getEve_phone() {
-        return eve_phone;
+    @JsonSerialize
+    @JsonProperty("eve_phone")
+    public String getEvePhone() {
+        return evePhone;
     }
 
-    public void setEve_phone(String eve_phone) {
-        this.eve_phone = eve_phone;
+    public void setEvePhone(String evePhone) {
+        this.evePhone = evePhone;
     }
 
-    public String getMob_phone() {
-        return mob_phone;
+    @JsonSerialize
+    @JsonProperty("mob_phone")
+    public String getMobPhone() {
+        return mobPhone;
     }
 
-    public void setMob_phone(String mob_phone) {
-        this.mob_phone = mob_phone;
+    public void setMobPhone(String mobPhone) {
+        this.mobPhone = mobPhone;
     }
 }

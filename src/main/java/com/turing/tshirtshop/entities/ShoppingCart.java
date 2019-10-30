@@ -1,5 +1,9 @@
 package com.turing.tshirtshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -37,7 +41,7 @@ import javax.persistence.*;
                         @StoredProcedureParameter(mode = ParameterMode.IN, name = "inItemId", type = String.class)
                 })
 })
-
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ShoppingCart {
     @Id
     @Column(name = "item_id")
@@ -46,9 +50,12 @@ public class ShoppingCart {
     private String cartId;
 
     private String attributes;
-    private int product_id;
+    @Column(name = "product_id")
+    private int productId;
     private int quantity;
 
+    @JsonSerialize
+    @JsonProperty("item_id")
     public String getItemId() {
         return itemId;
     }
@@ -65,12 +72,14 @@ public class ShoppingCart {
         this.attributes = attributes;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    @JsonSerialize
+    @JsonProperty("product_id")
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
@@ -81,6 +90,8 @@ public class ShoppingCart {
         this.quantity = quantity;
     }
 
+    @JsonSerialize
+    @JsonProperty("cart_id")
     public String getCartId() {
         return cartId;
     }

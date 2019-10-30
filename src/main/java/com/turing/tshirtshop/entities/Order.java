@@ -1,5 +1,9 @@
 package com.turing.tshirtshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,23 +17,29 @@ import javax.persistence.*;
 }
 
 )
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int product_id;
+    @Column(name = "product_id")
+    private int productId;
     private String  attributes;
-    private String product_name;
+    @Column(name = "product_name")
+    private String productName;
     private int quantity;
-    private int unit_cost;
+    @Column(name = "unit_cost")
+    private int unitCost;
     private int subtotal;
 
-    public int getProduct_id() {
-        return product_id;
+    @JsonSerialize
+    @JsonProperty("product_id")
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getAttributes() {
@@ -40,12 +50,14 @@ public class Order {
         this.attributes = attributes;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    @JsonSerialize
+    @JsonProperty("product_name")
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public int getQuantity() {
@@ -56,12 +68,14 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public int getUnit_cost() {
-        return unit_cost;
+    @JsonSerialize
+    @JsonProperty("unit_cost")
+    public int getUnitCost() {
+        return unitCost;
     }
 
-    public void setUnit_cost(int unit_cost) {
-        this.unit_cost = unit_cost;
+    public void setUnitCost(int unitCost) {
+        this.unitCost = unitCost;
     }
 
     public int getSubtotal() {

@@ -1,18 +1,28 @@
 package com.turing.tshirtshop.models;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class UniqueId {
-    private String cart_id;
+    private String cartId;
 
     public UniqueId(){}
-    public UniqueId(String cart_id) {
-        this.cart_id = cart_id;
+
+    public UniqueId(String cartId) {
+        this.cartId = cartId;
     }
 
-    public String getCart_id() {
-        return cart_id;
+    @JsonSerialize
+    @JsonProperty("cart_id")
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setCart_id(String cart_id) {
-        this.cart_id = cart_id;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
+
+
 }

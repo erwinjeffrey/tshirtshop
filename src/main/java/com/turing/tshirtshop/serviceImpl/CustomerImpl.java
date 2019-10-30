@@ -35,7 +35,7 @@ public class CustomerImpl implements CustomerService {
     @Override
     public CustomerDto customerLoginInfo(Customer customer) {
         CustomerLoginInfo customerLogin = customerLoginInfoRepository.customerLoginInfo(customer.getEmail());
-        Customer customerInfo = customerRepository.findById(customerLogin.getCustomer_id()).get();
+        Customer customerInfo = customerRepository.findById(customerLogin.getCustomerId()).get();
         if(customer.getPassword().equals(customerInfo.getPassword())){
             CustomerDto customerDto = new CustomerDto();
             customerDto.setCustomer(customer);
@@ -55,15 +55,15 @@ public class CustomerImpl implements CustomerService {
     public Customer updateCustomer(Customer customer) {
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
         customerRepository.updateCustomer(
-                customer.getCustomer_id(),
+                customer.getCustomerId(),
                 customer.getName(),
                 customer.getEmail(),
                 customer.getPassword(),
-                customer.getDay_phone(),
-                customer.getEve_phone(),
-                customer.getMob_phone()
+                customer.getDayPhone(),
+                customer.getEvePhone(),
+                customer.getMobPhone()
         );
-        Customer updatedCustomer = customerRepository.findById(customer.getCustomer_id()).orElse(null);
+        Customer updatedCustomer = customerRepository.findById(customer.getCustomerId()).orElse(null);
         updatedCustomer.setPassword(null);
         return  updatedCustomer;
     }
@@ -71,23 +71,23 @@ public class CustomerImpl implements CustomerService {
     @Override
     public Customer updateAddress(Customer customer) {
         customerRepository.updateAddress(
-                customer.getCustomer_id(),
-                customer.getAddress_1(),
-                customer.getAddress_2(),
+                customer.getCustomerId(),
+                customer.getFirstAddress(),
+                customer.getSecondAddress(),
                 customer.getCity(),
                 customer.getRegion(),
-                customer.getPostal_code(),
+                customer.getPostalCode(),
                 customer.getCountry(),
-                customer.getShipping_region_id());
-        Customer updatedCustomer = customerRepository.findById(customer.getCustomer_id()).get();
+                customer.getShippingRegionId());
+        Customer updatedCustomer = customerRepository.findById(customer.getCustomerId()).get();
         updatedCustomer.setPassword(null);
         return updatedCustomer;
     }
 
     @Override
     public Customer updateCreditCard(Customer customer) {
-        customerRepository.updateCreditCard(customer.getCustomer_id(), customer.getCredit_card());
-        Customer updatedCustomer = customerRepository.findById(customer.getCustomer_id()).get();
+        customerRepository.updateCreditCard(customer.getCustomerId(), customer.getCreditCard());
+        Customer updatedCustomer = customerRepository.findById(customer.getCustomerId()).get();
         updatedCustomer.setPassword(null);
         return updatedCustomer;
     }
