@@ -9,6 +9,7 @@ import com.turing.tshirtshop.repositories.CategoryDepartCusRepository;
 import com.turing.tshirtshop.repositories.CategoryRepository;
 import com.turing.tshirtshop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryDepartCusRepository categoryDepartCusRepository;
 
     @Override
+    @Cacheable("categories")
     public CategoryWrapper findAllCategories() {
         CategoryWrapper categoryWrapper = new CategoryWrapper();
         categoryWrapper.setRows(categoryRepository.findAll());

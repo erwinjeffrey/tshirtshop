@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping(path = "")
-    public ResponseEntity<OrderIdDto> createOrder(@RequestBody OrderDto orderDto){
+    public ResponseEntity<OrderIdDto> createOrder(@Valid @RequestBody OrderDto orderDto){
         return ResponseEntity.ok(orderService.createOrder(orderDto));
     }
 

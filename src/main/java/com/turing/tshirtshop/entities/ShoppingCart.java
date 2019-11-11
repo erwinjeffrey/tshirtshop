@@ -46,15 +46,17 @@ public class ShoppingCart {
     @Id
     @Column(name = "item_id")
     private String itemId;
+
     @Column(name = "cart_id")
     private String cartId;
 
     private String attributes;
+
     @Column(name = "product_id")
     private int productId;
+
     private int quantity;
 
-    @JsonSerialize
     @JsonProperty("item_id")
     public String getItemId() {
         return itemId;
@@ -72,7 +74,6 @@ public class ShoppingCart {
         this.attributes = attributes;
     }
 
-    @JsonSerialize
     @JsonProperty("product_id")
     public int getProductId() {
         return productId;
@@ -90,7 +91,6 @@ public class ShoppingCart {
         this.quantity = quantity;
     }
 
-    @JsonSerialize
     @JsonProperty("cart_id")
     public String getCartId() {
         return cartId;

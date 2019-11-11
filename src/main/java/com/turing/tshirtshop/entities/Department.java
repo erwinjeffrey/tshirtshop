@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "department")
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Department {
 
     @Id
@@ -37,7 +36,6 @@ public class Department {
         this.description = description;
     }
 
-    @JsonSerialize
     @JsonProperty("department_id")
     public int getDepartmentId() {
         return departmentId;

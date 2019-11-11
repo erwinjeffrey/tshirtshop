@@ -3,8 +3,12 @@ package com.turing.tshirtshop.entities;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.turing.tshirtshop.customValidation.ValidCustomer;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "review")
@@ -19,18 +23,26 @@ import javax.persistence.*;
                                    @StoredProcedureParameter(mode = ParameterMode.OUT, name = "out_reviewId",type = Integer.class)
 
                            })
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
     private int reviewId;
+
+    @Size( min = 1, message = "Please write a review")
     private String review;
+
+    @Range(min = 1, max = 5, message = "rating must be between 1 and 5")
     private int rating;
+
     @Column(name = "created_on")
     private String createdOn;
+
     @Column(name = "customer_id")
+
+    @ValidCustomer
     private int customerId;
+
     @Column(name = "product_id")
     private int productId;
 
@@ -42,7 +54,6 @@ public class Review {
         this.review = review;
     }
 
-    @JsonSerialize
     @JsonProperty("review_id")
     public int getReviewId() {
         return reviewId;
@@ -60,7 +71,6 @@ public class Review {
         this.rating = rating;
     }
 
-    @JsonSerialize
     @JsonProperty("created_on")
     public String getCreatedOn() {
         return createdOn;
@@ -70,7 +80,6 @@ public class Review {
         this.createdOn = createdOn;
     }
 
-    @JsonSerialize
     @JsonProperty("customer_id")
     public int getCustomerId() {
         return customerId;
@@ -80,7 +89,6 @@ public class Review {
         this.customerId = customerId;
     }
 
-    @JsonSerialize
     @JsonProperty("product_id")
     public int getProductId() {
         return productId;

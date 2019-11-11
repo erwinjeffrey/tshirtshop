@@ -6,10 +6,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sun.javafx.beans.IDProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "shipping")
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Shipping {
 
     @Id
@@ -21,9 +21,9 @@ public class Shipping {
     @Column(name = "shipping_cost")
     private double shippingCost;
     @Column(name = "shipping_region_id")
+    @Pattern(regexp = "\\d+", message = "The Shipping Region ID is not number" )
     private int shippingRegionId;
 
-    @JsonSerialize
     @JsonProperty("shipping_id")
     public int getShippingId() {
         return shippingId;
@@ -33,7 +33,6 @@ public class Shipping {
         this.shippingId = shippingId;
     }
 
-    @JsonSerialize
     @JsonProperty("shipping_type")
     public String getShippingType() {
         return shippingType;
@@ -43,7 +42,6 @@ public class Shipping {
         this.shippingType = shippingType;
     }
 
-    @JsonSerialize
     @JsonProperty("shipping_cost")
     public double getShippingCost() {
         return shippingCost;
@@ -54,7 +52,6 @@ public class Shipping {
     }
 
 
-    @JsonSerialize
     @JsonProperty("shipping_region_id")
     public int getShippingRegionId() {
         return shippingRegionId;

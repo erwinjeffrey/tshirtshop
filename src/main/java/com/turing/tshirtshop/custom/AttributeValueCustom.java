@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "attribute")
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class AttributeValueCustom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +23,6 @@ public class AttributeValueCustom {
         this.value = value;
     }
 
-    @JsonSerialize
     @JsonProperty("attribute_value_id")
     public int getAttributeValueId() {
         return attributeValueId;

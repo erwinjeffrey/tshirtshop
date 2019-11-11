@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class StripeDto {
     private String token;
     private int orderId;
@@ -13,7 +12,6 @@ public class StripeDto {
     private String currency;
     private String email;
 
-    @JsonSerialize
     @JsonProperty("stripeToken")
     public String getToken() {
         return token;
@@ -23,7 +21,6 @@ public class StripeDto {
         this.token = token;
     }
 
-    @JsonSerialize
     @JsonProperty("order_id")
     public int getOrderId() {
         return orderId;

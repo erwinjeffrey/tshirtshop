@@ -9,6 +9,7 @@ import com.turing.tshirtshop.repositories.OrderCustomRepository;
 import com.turing.tshirtshop.repositories.OrderRepository;
 import com.turing.tshirtshop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -42,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Cacheable("orders")
     public List<OrderCustom> findOrdersByCustomer(int customerId) {
        return orderCustomRepository.findOrdersByCustomer(customerId);
     }

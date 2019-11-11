@@ -3,8 +3,11 @@ package com.turing.tshirtshop.entities;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.turing.tshirtshop.customValidation.UniqueEmail;
+import com.turing.tshirtshop.customValidation.ValidEmail;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "customer")
@@ -49,27 +52,49 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private int customerId;
+
     private String name;
+
+    @UniqueEmail
+    @Email(message = "The email is invalid")
+    @NotEmpty(message = "The field email is required")
+    @ValidEmail
     private String email;
+
+    @Size(min = 5,max = 10, message = "Password is invalid: must be between 5 and 10")
     private String password;
+
     @Column(name = "credit_card")
+    @Size(min = 16,max = 16, message = "This is an invalid Credit Card: must have 16 digits")
     private String creditCard;
+
     @Column(name = "address_1")
     private String firstAddress;
+
     @Column(name = "address_2")
     private String secondAddress;
     private String city;
     private String region;
+
     @Column(name = "postal_code")
     private String postalCode;
     private String country;
+
     @Column(name = "shipping_region_id")
+    //@Pattern(regexp = "\\d+", message = "The Shipping Region ID is not number" )
     private int shippingRegionId;
+
     @Column(name = "day_phone")
+    //@NotNull
+    //@Pattern(regexp = "\\d+", message = "This is an invalid phone number" )
     private String dayPhone;
+
     @Column(name = "eve_phone")
+   // @Pattern(regexp = "\\d+", message = "This is an invalid phone number" )
     private String evePhone;
+
     @Column(name = "mob_phone")
+   // @Pattern(regexp = "\\d+", message = "This is an invalid phone number" )
     private String mobPhone;
 
     @JsonSerialize
@@ -82,6 +107,7 @@ public class Customer {
         this.customerId = customerId;
     }
 
+    @JsonSerialize
     public String getName() {
         return name;
     }
@@ -90,6 +116,7 @@ public class Customer {
         this.name = name;
     }
 
+    @JsonSerialize
     public String getEmail() {
         return email;
     }
@@ -136,6 +163,7 @@ public class Customer {
         this.secondAddress = secondAddress;
     }
 
+    @JsonSerialize
     public String getCity() {
         return city;
     }
@@ -144,6 +172,7 @@ public class Customer {
         this.city = city;
     }
 
+    @JsonSerialize
     public String getRegion() {
         return region;
     }
@@ -162,6 +191,7 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
+    @JsonSerialize
     public String getCountry() {
         return country;
     }

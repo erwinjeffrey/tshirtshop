@@ -4,6 +4,7 @@ import com.turing.tshirtshop.entities.Tax;
 import com.turing.tshirtshop.repositories.TaxRepository;
 import com.turing.tshirtshop.service.TaxService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class TaxServiceImpl implements TaxService {
     private TaxRepository taxRepository;
 
     @Override
+    @Cacheable("taxs")
     public List<Tax> findAll() {
         return taxRepository.findAll();
     }

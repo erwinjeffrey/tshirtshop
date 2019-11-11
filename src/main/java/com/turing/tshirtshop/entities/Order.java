@@ -17,7 +17,6 @@ import javax.persistence.*;
 }
 
 )
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Order {
 
     @Id
@@ -32,7 +31,6 @@ public class Order {
     private int unitCost;
     private int subtotal;
 
-    @JsonSerialize
     @JsonProperty("product_id")
     public int getProductId() {
         return productId;
@@ -50,7 +48,6 @@ public class Order {
         this.attributes = attributes;
     }
 
-    @JsonSerialize
     @JsonProperty("product_name")
     public String getProductName() {
         return productName;
@@ -68,7 +65,6 @@ public class Order {
         this.quantity = quantity;
     }
 
-    @JsonSerialize
     @JsonProperty("unit_cost")
     public int getUnitCost() {
         return unitCost;

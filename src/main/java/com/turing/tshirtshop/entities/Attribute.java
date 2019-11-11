@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "attribute")
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Attribute {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

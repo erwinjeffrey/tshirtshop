@@ -2,6 +2,7 @@ package com.turing.tshirtshop.serviceImpl;
 
 import com.turing.tshirtshop.Constants.Constants;
 import com.turing.tshirtshop.custom.ShoppingCartProduct;
+import com.turing.tshirtshop.entities.Shipping;
 import com.turing.tshirtshop.entities.ShoppingCart;
 import com.turing.tshirtshop.models.ShoppingMessage;
 import com.turing.tshirtshop.models.UniqueId;
@@ -9,6 +10,7 @@ import com.turing.tshirtshop.repositories.ShoppingCartProductReposity;
 import com.turing.tshirtshop.repositories.ShoppingCartRepository;
 import com.turing.tshirtshop.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -46,6 +48,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Cacheable("shoppingcarts")
     public List<ShoppingCartProduct> findShoppingCartProduct(String cartId) {
         return shoppingCartProductReposity.findShoppingCartProduct(cartId);
     }

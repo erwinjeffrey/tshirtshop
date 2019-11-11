@@ -4,9 +4,13 @@ import com.turing.tshirtshop.entities.Customer;
 import com.turing.tshirtshop.models.CustomerDto;
 import com.turing.tshirtshop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/")
@@ -19,8 +23,9 @@ public class CustomerController {
      This endpoints allow a user to create a new account.
      */
     @PostMapping(path = "/customers")
-    public ResponseEntity<CustomerDto> addCustomer(@RequestBody Customer customer){
-        return ResponseEntity.ok(customerService.addCustomer(customer));
+    public ResponseEntity<CustomerDto> addCustomer(@Valid @RequestBody Customer customer){
+        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri())
+                .body(customerService.addCustomer(customer));
     }
 
     /*@PostMapping(path = "/login")
@@ -34,7 +39,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "/customer")
-    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
+    public ResponseEntity<Customer> updateCustomer(@Valid @RequestBody Customer customer){
         return ResponseEntity.ok(customerService.updateCustomer(customer));
     }
 

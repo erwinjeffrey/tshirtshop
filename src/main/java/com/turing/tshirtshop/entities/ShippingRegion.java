@@ -19,7 +19,6 @@ public class ShippingRegion {
     @Column(name = "shipping_region")
     private String shippingRegion;
 
-    @JsonSerialize
     @JsonProperty("shipping_region_id")
     public int getId() {
         return id;
@@ -29,7 +28,6 @@ public class ShippingRegion {
         this.id = id;
     }
 
-    @JsonSerialize
     @JsonProperty("shipping_region")
     public String getShippingRegion() {
         return shippingRegion;

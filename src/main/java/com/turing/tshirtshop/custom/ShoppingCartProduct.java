@@ -18,7 +18,7 @@ public class ShoppingCartProduct {
     private String cart_id;
     private String name;
     private String attributes;
-    @Column(name = "productId")
+    @Column(name = "product_id")
     private int productId;
     private String image;
     private double price;

@@ -3,14 +3,15 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.turing.tshirtshop.entities.Order;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.List;
 
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
-@Entity
 public class OrderDetailsCustom {
+
 
     @Column(name = "order_id")
     private int orderId;

@@ -5,6 +5,7 @@ import com.turing.tshirtshop.repositories.ShippingRegionRepository;
 import com.turing.tshirtshop.repositories.ShippingRepository;
 import com.turing.tshirtshop.service.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class ShippingServiceImpl implements ShippingService {
     private ShippingRepository shippingRepository;
 
     @Override
+    @Cacheable("shippings")
     public List<Shipping> findShippingsInRegion(int shippingRegionId) {
         return shippingRepository.findAll();
     }

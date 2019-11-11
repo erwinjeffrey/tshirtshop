@@ -19,7 +19,6 @@ public class Tax {
     @Column(name="tax_percentage")
     private double taxPercentage;
 
-    @JsonSerialize
     @JsonProperty("tax_id")
     public int getTaxId() {
         return taxId;
@@ -30,7 +29,6 @@ public class Tax {
         this.taxId = taxId;
     }
 
-    @JsonSerialize
     @JsonProperty("tax_type")
     public String getTaxType() {
         return taxType;
@@ -40,7 +38,6 @@ public class Tax {
         this.taxType = taxType;
     }
 
-    @JsonSerialize
     @JsonProperty("tax_percentage")
     public double getTaxPercentage() {
         return taxPercentage;

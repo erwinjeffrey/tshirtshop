@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class ShoppingCartController {
     private ShoppingCartService shoppingCartService;
 
     @PostMapping("/add")
-    public ResponseEntity<List<ShoppingCart>> addProductToShoppingCart(@RequestBody ShoppingCart shoppingCart){
+    public ResponseEntity<List<ShoppingCart>> addProductToShoppingCart(@Valid @RequestBody ShoppingCart shoppingCart){
        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().build().toUri()).body(shoppingCartService.addProductToShoppingCart(shoppingCart));
     }
 
@@ -37,7 +38,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/update/{item_id}")
-    public ResponseEntity<ShoppingCart> updateShoppingCart(@PathVariable("item_id") String itemId, @RequestBody ShoppingCart shoppingCart){
+    public ResponseEntity<ShoppingCart> updateShoppingCart(@PathVariable("item_id") String itemId,@Valid @RequestBody ShoppingCart shoppingCart){
         return ResponseEntity.ok(shoppingCartService.updateShoppingCart(itemId,shoppingCart.getQuantity()));
     }
 

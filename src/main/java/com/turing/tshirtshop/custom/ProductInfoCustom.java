@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "product")
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class ProductInfoCustom {
 
     @Id
@@ -76,7 +75,6 @@ public class ProductInfoCustom {
         this.display = display;
     }
 
-    @JsonSerialize
     @JsonProperty("discounted_price")
     public String getDiscountedPrice() {
         return discountedPrice;
@@ -86,7 +84,6 @@ public class ProductInfoCustom {
         this.discountedPrice = discountedPrice;
     }
 
-    @JsonSerialize
     @JsonProperty("image_2")
     public String getSecondImage() {
         return secondImage;
@@ -96,7 +93,6 @@ public class ProductInfoCustom {
         this.secondImage = secondImage;
     }
 
-    @JsonSerialize
     @JsonProperty("product_id")
     public int getProductId() {
         return productId;

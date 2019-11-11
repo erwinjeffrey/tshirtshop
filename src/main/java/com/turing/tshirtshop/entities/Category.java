@@ -3,8 +3,11 @@ package com.turing.tshirtshop.entities;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.turing.tshirtshop.customValidation.ValidCategory;
+import com.turing.tshirtshop.customValidation.ValidDepartment;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "category")
@@ -21,7 +24,6 @@ import javax.persistence.*;
                         @StoredProcedureParameter(mode = ParameterMode.IN,name = "inDepartmentId",type = Integer.class)
                 })
 })
-@JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public class Category {
 
     @Id
@@ -31,6 +33,8 @@ public class Category {
     private String name;
     private String description;
     @Column(name = "department_id")
+    @Pattern(regexp = "\\d+", message = "The ID is not a number")
+    @ValidDepartment
     private int departmentId;
 
     public String getName() {
@@ -47,7 +51,6 @@ public class Category {
 
     public void setDescription(String description) { this.description = description; }
 
-    @JsonSerialize
     @JsonProperty("category_id")
     public int getCategoryId() {
         return categoryId;
@@ -57,7 +60,6 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    @JsonSerialize
     @JsonProperty("department_id")
     public int getDepartmentId() {
         return departmentId;

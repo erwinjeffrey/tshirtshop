@@ -28,4 +28,5 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart,Integ
 
     @Procedure(name = "removeShoppingCartProd")
     void removeShoppingCartProd(@Param("inItemId") String itemId);
+
 }

@@ -12,6 +12,7 @@ import com.turing.tshirtshop.repositories.ProductRepository;
 import com.turing.tshirtshop.repositories.ReviewRepository;
 import com.turing.tshirtshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,7 @@ public class ProductServiceImpl implements ProductService{
     private ReviewRepository reviewRepository;
 
     @Override
+    @Cacheable("products")
     public ProductDto findAllProduct(int page, int limit,int descriptionLenght) {
          Pageable pageable = PageRequest.of(page,limit);
 
